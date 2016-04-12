@@ -7,10 +7,10 @@
     <packaging>jar</packaging>
 
     <parent>
-        <groupId>cn.com.fanyev5.base</groupId>
+        <groupId>cn.com.trends.base</groupId>
         <artifactId>base-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../base-parent/pom.xml</relativePath>
     </parent>
-   <!-- -112312 -->
+
 </project>
