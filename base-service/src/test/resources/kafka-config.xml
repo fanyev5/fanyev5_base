@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <kafka>
+        <zookeepers>
+            <zookeeper name="zk-test-1">
+                <configs>
+                    <entry name="zk.connect">42.96.161.237:2181</entry>
+                    <entry name="zk.sessiontimeout.ms">400</entry>
+                    <entry name="zk.connectiontimeout.ms">6000</entry>
+                    <entry name="zk.synctime.ms">200</entry>
+                </configs>
+            </zookeeper>
+        </zookeepers>
+        <producers>
+            <producer name="producer-test-1">
+                <zookeeper>zk-test-1</zookeeper>
+                <serializer>cn.com.trends.baseservice.kafka.message.impl.StringMessageSerializer</serializer>
+                <configs>
+                    <entry name="producer.type">async</entry>
+                    <entry name="buffer.size">102400</entry>
+                    <entry name="connect.timeout.ms">5000</entry>
+                    <entry name="socket.timeout.ms">30000</entry>
+                    <entry name="reconnect.interval">30000</entry>
+                    <entry name="zk.read.num.retries">10</entry>
+                </configs>
+            </producer>
+        </producers>
+        <consumers>
+            <consumer name="consumer-test-1">
+                <zookeeper>zk-test-1</zookeeper>
+                <serializer>cn.com.trends.baseservice.kafka.message.impl.StringMessageSerializer</serializer>
+                <topics>
+                    <topic>
+                        <name>topic-test-1</name>
+                        <streamcount>2</streamcount>
+                        <processor>cn.com.trends.baseservice.kafka.processor.TestKafkaMessageProcessor</processor>
+                    </topic>
+                </topics>
+                <configs>
+                    <entry name="socket.timeout.ms">30000</entry>
+                    <entry name="socket.buffersize">65536</entry>
+                    <entry name="fetch.size">1048576</entry>
+                    <entry name="queuedchunks.max">100</entry>
+                    <entry name="autocommit.enable">true</entry>
+                    <entry name="autocommit.interval.ms">100</entry>
+                    <entry name="autooffset.reset">smallest</entry>
+                    <entry name="consumer.timeout.ms">-1</entry>
+                    <entry name="rebalance.retries.max">10</entry>
+                </configs>
+            </consumer>
+        </consumers>
+    </kafka>
+</root>

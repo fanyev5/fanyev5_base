@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <!-- 服务列表 -->
+    <servers>
+        <!--<server name="redis_1" host="192.1.1.103" port="6379"/>
+        <server name="redis_2" host="192.1.1.103" port="6379"/> -->
+        
+        <server name="redis_1" host="42.96.161.237" port="6379"/>
+        <server name="redis_2" host="42.96.161.237" port="6379"/>
+    </servers>
+
+    <!-- 分组列表 -->
+    <groups>
+
+        <group name="group_redis_entity">
+            <servers>
+                <server>redis_1</server>
+                <server>redis_2</server>
+            </servers>
+            <properties>
+                <property name="redis.conf.timeout">6000</property>
+                <property name="redis.conf.max.active">40</property>
+                <property name="redis.conf.max.wait">1000</property>
+                <property name="redis.conf.max.idle">20</property>
+                <property name="redis.conf.min.idle">10</property>
+            </properties>
+        </group>
+
+        <group name="group_redis_api">
+            <servers>
+                <server>redis_1</server>
+                <server>redis_2</server>
+            </servers>
+            <properties>
+                <property name="redis.conf.timeout">6000</property>
+                <property name="redis.conf.max.active">40</property>
+                <property name="redis.conf.max.wait">1000</property>
+                <property name="redis.conf.max.idle">20</property>
+                <property name="redis.conf.min.idle">10</property>
+            </properties>
+        </group>
+    </groups>
+</root>
